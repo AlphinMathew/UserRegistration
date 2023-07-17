@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="nofoobar.com" content="Nofoobar">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <title>User Registration</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row">
+      <h5 class="display-5">Register</h5>
+      <div class="text-danger font-weight-bold">
+          {% for error in errors %}
+            <li>{{error}}</li>
+          {% endfor %}
+      </div>
+    </div>
+
+    <div class="row my-5">
+      <form method="POST">
+        <div class="mb-3">
+          <label>Full Name</label>
+          <input type="text" required class="form-control" name="fullname" value="{{fullname}}" placeholder="Full Name">
+        </div>
+        <div class="mb-3">
+          <label>Email</label>
+          <input type="text" required placeholder="Your email" name="email" value="{{email}}" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label>Phone</label>
+          <input type="text" required placeholder="Your phone number" name="phone" value="{{phone}}" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label>Password</label>
+          <input type="password" required placeholder="Choose a secure password" value="{{password}}" name="password" class="form-control">
+        </div>
+        <div class="mb-3">
+          <label>Profile Picture</label>
+          <input type="file" id="file" accept=".jpg, .jpeg, .png" required value="{{picture}}" name="picture" class="form-control"  onchange="return fileValidation()">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+  </div>
+  <script>
+    function fileValidation() {
+        var fileInput =
+            document.getElementById('file');
+         
+        var filePath = fileInput.value;
+     
+        // Allowing file type
+        var allowedExtensions =
+                /(\.jpg|\.jpeg|\.png)$/i;
+         
+        if (!allowedExtensions.exec(filePath)) {
+            alert('Invalid file type');
+            fileInput.value = '';
+            return false;
+        }
+    }
+    </script>
+</body>
+</html>
